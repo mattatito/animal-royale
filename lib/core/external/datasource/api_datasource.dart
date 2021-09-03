@@ -17,8 +17,6 @@ class ApiDatasource implements AuthenticateUserDatasource{
     }
 
     return ResultAuthenticationModel.fromJson(response.data as String);
-
-
   }
 
 }
