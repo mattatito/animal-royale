@@ -7,11 +7,9 @@ class AppModule extends Module {
 
   @override
   final List<Bind> binds = [
-    Bind.factory((i) => AuthenticateUserUseCaseImpl())
   ];
 
   @override
   final List<ModularRoute> routes = [
-    Router()
   ];
 }

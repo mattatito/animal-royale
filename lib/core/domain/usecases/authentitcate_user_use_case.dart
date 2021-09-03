@@ -1,8 +1,10 @@
-import 'package:animal_royale/core/domain/models/authentication_model.dart';
-import 'package:animal_royale/core/domain/repositories/auth_repository.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+
+import '../entity/result_authentication.dart';
+import '../repositories/auth_repository.dart';
 
 abstract class AuthenticateUserUseCase{
-  Future<AuthenticationModel> authenticate(String userEmail, String userPassword);
+  Future<ResultAuthentication> authenticate(String userEmail, String userPassword);
 }
 
 class AuthenticateUserUseCaseImpl implements AuthenticateUserUseCase{
@@ -12,7 +14,7 @@ class AuthenticateUserUseCaseImpl implements AuthenticateUserUseCase{
   AuthenticateUserUseCaseImpl(this.authenticationRepository);
 
   @override
-  Future<AuthenticationModel> authenticate(String userEmail, String userPassword) {
+  Future<ResultAuthentication> authenticate(String userEmail, String userPassword) {
     return authenticationRepository.authenticate(userEmail, userPassword);
   }
   

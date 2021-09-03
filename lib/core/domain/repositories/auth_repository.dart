@@ -1,5 +1,5 @@
-import 'package:animal_royale/core/domain/models/authentication_model.dart';
+import 'package:animal_royale/core/domain/entity/result_authentication.dart';
 
 abstract class AuthenticationRepository{
-  Future<AuthenticationModel> authenticate(String userEmail, String userPassword);
+  Future<ResultAuthentication> authenticate(String userEmail, String userPassword);
 }
