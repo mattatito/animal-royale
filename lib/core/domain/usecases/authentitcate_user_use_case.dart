@@ -1,5 +1,3 @@
-import 'package:flutter_modular/flutter_modular.dart';
-
 import '../entity/result_authentication.dart';
 import '../repositories/auth_repository.dart';
 
