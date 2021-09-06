@@ -1,6 +1,5 @@
-
-import 'package:animal_royale/core/infra/datasources/authenticate_user.dart';
-import 'package:animal_royale/core/infra/models/result_authentication_model.dart';
+import 'package:animal_royale/modules/login/infra/datasources/authenticate_user.dart';
+import 'package:animal_royale/modules/login/infra/models/result_authentication_model.dart';
 import 'package:dio/dio.dart';
 
 class ApiDatasource implements AuthenticateUserDatasource{

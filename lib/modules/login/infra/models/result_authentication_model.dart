@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../../../core/domain/entity/result_authentication.dart';
+import 'package:animal_royale/modules/login/domain/entity/result_authentication.dart';
 
 typedef JsonMap = Map<String, dynamic>;
 

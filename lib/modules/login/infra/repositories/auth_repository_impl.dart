@@ -1,7 +1,6 @@
-
-import 'package:animal_royale/core/domain/entity/result_authentication.dart';
-import 'package:animal_royale/core/domain/repositories/auth_repository.dart';
-import 'package:animal_royale/core/infra/datasources/authenticate_user.dart';
+import 'package:animal_royale/modules/login/domain/entity/result_authentication.dart';
+import 'package:animal_royale/modules/login/domain/repositories/auth_repository.dart';
+import 'package:animal_royale/modules/login/infra/datasources/authenticate_user.dart';
 
 class AuthenticationRepositoryImpl implements AuthenticationRepository{
 

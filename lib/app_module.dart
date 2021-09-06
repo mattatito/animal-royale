@@ -1,10 +1,11 @@
+import 'package:animal_royale/modules/login/datasource/api_datasource.dart';
+import 'package:animal_royale/modules/login/domain/usecases/authentitcate_user_use_case.dart';
+import 'package:animal_royale/modules/login/infra/repositories/auth_repository_impl.dart';
+import 'package:animal_royale/modules/login/presenter/login_screen.dart';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../core/domain/usecases/authentitcate_user_use_case.dart';
-import '../core/external/datasource/api_datasource.dart';
-import '../core/infra/repositories/auth_repository_impl.dart';
-import 'core/presenter/login_screen.dart';
 
 
 class AppModule extends Module {
