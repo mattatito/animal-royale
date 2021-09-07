@@ -12,7 +12,7 @@ class LoginScreenMobx extends StatelessWidget {
   final _userController = TextEditingController();
   final _passController = TextEditingController();
 
-  final store = LoginStore(Modular.get<AuthenticateUserUseCase>());
+  final store = LStore(Modular.get<AuthenticateUserUseCase>());
 
   @override
   Widget build(BuildContext context) {
