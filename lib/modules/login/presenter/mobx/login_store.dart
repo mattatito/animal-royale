@@ -5,11 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 import 'package:mobx_codegen/mobx_codegen.dart';
 
-part 'login_store.g.dart';
+//part 'login_store.g.dart';
 
-class LStore = LoginStore with _$LoginStore;
-
-abstract class LoginStore with Store {
+class LoginStore with Store {
 
   AuthenticateUserUseCase _authUser;
 
