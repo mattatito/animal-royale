@@ -1,10 +1,11 @@
 import 'package:animal_royale/modules/login/datasource/api_datasource.dart';
 import 'package:animal_royale/modules/login/domain/usecases/authentitcate_user_use_case.dart';
 import 'package:animal_royale/modules/login/infra/repositories/auth_repository_impl.dart';
-import 'package:animal_royale/modules/login/presenter/login_screen.dart';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import 'modules/login/login_module.dart';
 
 
 
@@ -19,6 +20,6 @@ class AppModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute('/', child: (_, args) => LoginScreen()),
+    ModuleRoute('/login', module: LoginModule()),
   ];
 }
