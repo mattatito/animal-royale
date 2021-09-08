@@ -15,7 +15,10 @@ class LoginController {
 
     await Future.delayed(Duration(seconds: 2));
 
-    state = LoginState.userLogged();
+    state = LoginState.error("NÃO DEU");
+    await Future.delayed(Duration(seconds: 5));
+
+    state = LoginState();
   }
 
 }

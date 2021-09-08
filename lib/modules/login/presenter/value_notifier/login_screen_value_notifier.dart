@@ -1,5 +1,7 @@
 import 'package:animal_royale/modules/login/presenter/value_notifier/controller.dart';
 import 'package:animal_royale/modules/login/presenter/value_notifier/login_state.dart';
+import 'package:animal_royale/modules/login/presenter/widgets/login_button.dart';
+import 'package:animated_card/animated_card.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/form_input_widget.dart';
@@ -54,22 +56,49 @@ class LoginScreenValueNotifier extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
+              LoginButton(
+                  onTap: () => controller.signInUser(
+                      _userController.text, _passController.text),
+                  child: ValueListenableBuilder<LoginState>(
+                    valueListenable: controller.state,
+                    builder: (_, state, __) {
+                      return state.loading
+                          ? Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                              ),
+                            )
+                          : Text(
+                              'Login',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            );
+                    },
+                  ),),
               ValueListenableBuilder<LoginState>(valueListenable: controller.state, builder: (_, state, __){
-                return state.loading ? Center(child: CircularProgressIndicator(),) : Text(
-                            'Login',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          );
-              },
-              ),
+                return state.error.isNotEmpty ? AnimatedCard(
+                  direction: AnimatedCardDirection.right,
+                  curve: Curves.linear,
+                  onRemove: (){},
+                  child: Container(
+                    margin: EdgeInsets.all(20),
+                    width: double.maxFinite,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(child: Text("um erro aconteceu: ${state.error}", style: TextStyle(color: Colors.white),)),
+                  ),
+                ) : Container();
+              }),
             ],
           ),
         ),
       ),
     );
   }
-
 }
