@@ -10,6 +10,6 @@ class LoginModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute('/', child: (_, args) => LoginScreenValueNotifier()),
+    ChildRoute('/login', child: (_, args) => LoginScreenValueNotifier()),
   ];
 }
