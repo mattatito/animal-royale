@@ -10,7 +10,7 @@ class LoginController {
 
   final formKey = GlobalKey<FormState>();
 
-  void signInUser(String email, String password) async {
+  Future<void> signInUser(String email, String password) async {
     state = LoginState.loading();
 
     await Future.delayed(Duration(seconds: 2));

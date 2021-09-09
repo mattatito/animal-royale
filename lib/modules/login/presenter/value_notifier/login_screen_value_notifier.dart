@@ -19,12 +19,12 @@ class LoginScreenValueNotifier extends StatelessWidget {
         appBar: AppBar(
           title: Text('Value Notifier'),
         ),
-        body: _body(),
+        body: _body(context),
       ),
     );
   }
 
-  Widget _body() {
+  Widget _body(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
         margin: EdgeInsets.all(20),
@@ -57,44 +57,59 @@ class LoginScreenValueNotifier extends StatelessWidget {
                 height: 20,
               ),
               LoginButton(
-                  onTap: () => controller.signInUser(
-                      _userController.text, _passController.text),
-                  child: ValueListenableBuilder<LoginState>(
-                    valueListenable: controller.state,
-                    builder: (_, state, __) {
-                      return state.loading
-                          ? Center(
-                              child: CircularProgressIndicator(
-                                color: Colors.white,
+                onTap: () async {
+
+                  await controller.signInUser(
+                      _userController.text, _passController.text);
+
+                  Navigator.pushReplacementNamed(context, '/home');
+
+                },
+                child: ValueListenableBuilder<LoginState>(
+                  valueListenable: controller.state,
+                  builder: (_, state, __) {
+                    return state.loading
+                        ? Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                            ),
+                          )
+                        : Text(
+                            'Login',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          );
+                  },
+                ),
+              ),
+              ValueListenableBuilder<LoginState>(
+                  valueListenable: controller.state,
+                  builder: (_, state, __) {
+                    return state.error.isNotEmpty
+                        ? AnimatedCard(
+                            direction: AnimatedCardDirection.right,
+                            curve: Curves.linear,
+                            onRemove: () {},
+                            child: Container(
+                              margin: EdgeInsets.all(20),
+                              width: double.maxFinite,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                            )
-                          : Text(
-                              'Login',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            );
-                    },
-                  ),),
-              ValueListenableBuilder<LoginState>(valueListenable: controller.state, builder: (_, state, __){
-                return state.error.isNotEmpty ? AnimatedCard(
-                  direction: AnimatedCardDirection.right,
-                  curve: Curves.linear,
-                  onRemove: (){},
-                  child: Container(
-                    margin: EdgeInsets.all(20),
-                    width: double.maxFinite,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(child: Text("um erro aconteceu: ${state.error}", style: TextStyle(color: Colors.white),)),
-                  ),
-                ) : Container();
-              }),
+                              child: Center(
+                                  child: Text(
+                                "um erro aconteceu: ${state.error}",
+                                style: TextStyle(color: Colors.white),
+                              )),
+                            ),
+                          )
+                        : Container();
+                  }),
             ],
           ),
         ),
