@@ -1,3 +1,4 @@
+import 'package:animal_royale/modules/home/home_module.dart';
 import 'package:animal_royale/modules/login/datasource/api_datasource.dart';
 import 'package:animal_royale/modules/login/domain/usecases/authentitcate_user_use_case.dart';
 import 'package:animal_royale/modules/login/infra/repositories/auth_repository_impl.dart';
@@ -20,6 +21,6 @@ class AppModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ModuleRoute('/', module: LoginModule()),
+    ModuleRoute('/', module: HomeModule()),
   ];
 }
