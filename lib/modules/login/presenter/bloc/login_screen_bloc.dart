@@ -1,6 +1,8 @@
 import 'package:animal_royale/modules/login/presenter/bloc/login_bloc.dart';
+import 'package:animal_royale/modules/login/presenter/value_notifier/login_state.dart';
 import 'package:animal_royale/modules/login/presenter/widgets/login_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../widgets/form_input_widget.dart';
 
@@ -8,21 +10,21 @@ class LoginScreenBloc extends StatelessWidget {
   final _userController = TextEditingController();
   final _passController = TextEditingController();
 
-  final controller = LoginBloc();
+  final controller = LoginCubit(LoginState());
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Value Notifier'),
+          title: Text('Value Bloc'),
         ),
-        body: _body(),
+        body: _body(context),
       ),
     );
   }
 
-  Widget _body() {
+  Widget _body(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
         margin: EdgeInsets.all(20),
@@ -55,15 +57,17 @@ class LoginScreenBloc extends StatelessWidget {
                 height: 20,
               ),
               LoginButton(
-                onTap: (){},
-                child: Text(
+                onTap: () => context.read<LoginCubit>().signInUser(_userController.text, _passController.text),
+                child: BlocBuilder<LoginCubit, LoginState>(builder: (context, state){
+                  return state.loading ? Center(child: CircularProgressIndicator(),) : Text(
                   'Login',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
                   ),
-                ),),
+                );
+                }),),
             ],
           ),
         ),

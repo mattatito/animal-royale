@@ -20,5 +20,4 @@ class LoginController {
 
     state = LoginState();
   }
-
 }
