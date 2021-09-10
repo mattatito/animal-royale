@@ -27,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
               imageUrl:
                   'https://static.wikia.nocookie.net/animalroyale_gamepedia_en/images/0/06/Char-fox.png/revision/latest/scale-to-width-down/152?cb=20201124165055',
               onTap: (){},
+              detailsColor: Color(0xff595959),
             ),
           ],
         ),
