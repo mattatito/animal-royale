@@ -1,5 +1,7 @@
+import 'package:animal_royale/modules/home/presentation/home_store.dart';
 import 'package:animal_royale/modules/home/presentation/widgets/app_bar/app_bar_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 import 'widgets/ItemListTile.dart';
 
@@ -11,6 +13,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  final store = HomeStore();
   @override
   Widget build(BuildContext context) {
 
@@ -24,37 +28,19 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: Container(
           margin: EdgeInsets.only(top: 10),
-          child: Column(
-            children: [
-              ItemListTile(
-                title: 'Fox',
-                imageUrl:
-                    'https://static.wikia.nocookie.net/animalroyale_gamepedia_en/images/0/06/Char-fox.png/revision/latest/scale-to-width-down/152?cb=20201124165055',
-                onTap: (){},
-                detailsColor: Color(0xff595959),
-              ),
-              ItemListTile(
-                title: 'Bear',
-                imageUrl:
-                    'https://static.wikia.nocookie.net/animalroyale_gamepedia_en/images/6/69/Char-bear.png/revision/latest/scale-to-width-down/152?cb=20201124171657',
-                onTap: (){},
-                detailsColor: Color(0xff595959),
-              ),
-              ItemListTile(
-                title: 'SkullCat',
-                imageUrl:
-                    'https://static.wikia.nocookie.net/animalroyale_gamepedia_en/images/5/56/Char-skullcat.png/revision/latest/scale-to-width-down/152?cb=20201123045143',
-                onTap: (){},
-                detailsColor: Color(0xff595959),
-              ),
-              ItemListTile(
-                title: 'Tiger',
-                imageUrl:
-                    'https://static.wikia.nocookie.net/animalroyale_gamepedia_en/images/1/11/Char-tiger.png/revision/latest/scale-to-width-down/152?cb=20201122175457',
-                onTap: (){},
-                detailsColor: Color(0xff595959),
-              ),
-            ],
+          child: Observer(
+            builder: (context) => ListView.builder(
+              itemCount: store.animals.length,
+              itemBuilder: (context, index){
+                final animal = store.animals[index];
+                return ItemListTile(
+                  title: animal.name,
+                  imageUrl: animal.photoUrl,
+                  onTap: (){},
+                  detailsColor: Color(0xff595959),
+                );
+              },
+            ),
           ),
         ),
       ),
