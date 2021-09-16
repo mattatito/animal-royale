@@ -19,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
 
     final size = MediaQuery.of(context).size;
+    store.fetchAnimals();
     return SafeArea(
       child: Scaffold(
         appBar: AppBarWidget(
